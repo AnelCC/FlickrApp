@@ -35,7 +35,9 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 ### Library References
 1. Android Components Navigation [Read here](https://developer.android.com/jetpack/docs/guide)
 0. Kotlin [Read here](https://developer.android.com/kotlin/ktx)
+0. Dependency Injections  [Read here](https://developer.android.com/training/dependency-injection/hilt-android)
 0. Jetpack [Read here](https://developer.android.com/jetpack/getting-started)
+0. Hilt & Jetpack  [Read here](https://developer.android.com/jetpack/androidx/releases/hilt)
 0. Compose [Read here](https://developer.android.com/jetpack/androidx/releases/compose-ui)
 0. MVVM [Read here](https://blog.mindorks.com/mvc-mvp-mvvm-architecture-in-android)
 0. View Models [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
