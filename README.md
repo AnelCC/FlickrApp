@@ -35,6 +35,9 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 ### Library References
 1. Android Components Navigation [Read here](https://developer.android.com/jetpack/docs/guide)
 0. Kotlin [Read here](https://developer.android.com/kotlin/ktx)
+0. Retrofit [Read here](https://square.github.io/retrofit/)
+0. okhttp3 [Read here](https://square.github.io/okhttp/)
+0. Gson [Read here](https://github.com/google/gson#readme)
 0. Dependency Injections  [Read here](https://developer.android.com/training/dependency-injection/hilt-android)
 0. Jetpack [Read here](https://developer.android.com/jetpack/getting-started)
 0. Hilt & Jetpack  [Read here](https://developer.android.com/jetpack/androidx/releases/hilt)
@@ -44,4 +47,4 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 0. View Models [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. DataModel [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. DataModel [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
-   
+0. Coil Compose  [Read here](https://developer.android.com/jetpack/compose/graphics/images/loading)
