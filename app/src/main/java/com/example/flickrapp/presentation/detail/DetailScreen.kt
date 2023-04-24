@@ -25,9 +25,6 @@ import com.example.flickrapp.utils.TopAppBarFlickr
 @Composable
 fun DetailScreen(navController: NavController, viewModel: FlickrViewModel) {
     val selectedPicture by viewModel.selectedPicture.collectAsStateWithLifecycle()
-    val isSearching by viewModel.isSearching.collectAsStateWithLifecycle()
-    val pictures by viewModel.pictures.collectAsStateWithLifecycle()
-
 
     Column() {
         Row(
@@ -48,12 +45,8 @@ fun DetailScreen(navController: NavController, viewModel: FlickrViewModel) {
                     .padding(AppDimension.smallPadding)
             ) {
                 Spacer(modifier = Modifier.height(AppDimension.normalPadding))
-                if (isSearching) {
-                    Loading()
-                } else {
-                    selectedPicture?.let {
-                        ItemBox(it)
-                    }
+                selectedPicture?.let {
+                    ItemBox(it)
                 }
             }
         }

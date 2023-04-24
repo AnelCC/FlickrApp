@@ -8,6 +8,7 @@ class AppDimension {
         val xSmallPadding = 4.dp
         val smallPadding = 8.dp
         val normalPadding = 16.dp
+        val largePadding = 32.dp
 
         val normalSizeElement = 50.dp
         val mediumSizeElement = 80.dp

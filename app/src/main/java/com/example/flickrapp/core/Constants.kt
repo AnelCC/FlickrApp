@@ -8,4 +8,4 @@ const val PAGING_LIMIT = "50"
 const val PAGING_LIMIT_SEARCH = "25"
 const val CALLBACK = "&nojsoncallback=1"
 const val WEB_SERVICE_URL = "https://api.flickr.com/services/rest/"
-const val CONNECTION_TIMEOUT: Long = 10
+const val CONNECTION_TIMEOUT: Long = 15
