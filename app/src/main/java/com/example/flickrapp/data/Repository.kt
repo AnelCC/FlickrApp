@@ -11,7 +11,7 @@ class Repository @Inject constructor(private val  managerService: ManagerService
         return managerService.getAllPictures()
     }
 
-    suspend fun getPictureSearchBy(query: String): PicturesResponse? {
+    suspend fun getPictureSearchBy(query: String): Resource<PicturesResponse> {
         return managerService.getPictureSearchBy(query)
     }
 }

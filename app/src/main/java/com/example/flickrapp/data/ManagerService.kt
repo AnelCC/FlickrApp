@@ -23,13 +23,17 @@ class ManagerService @Inject constructor(private val api: ApiService) {
         }
     }
 
-    suspend fun getPictureSearchBy(query: String) : PicturesResponse? {
+    suspend fun getPictureSearchBy(query: String) : Resource<PicturesResponse> {
         return withContext(Dispatchers.IO) {
-            val response = api.getPictureByTag(query)
-            if(response.isSuccessful) {
-                response.body()
-            } else {
-                null
+            try {
+                val response = api.getPictureByTag(query)
+                if(response.isSuccessful) {
+                    Resource.Success(response.body())
+                }  else {
+                    Resource.Error(ErrorText.DynamicString("Server error" ), response.code())
+                }
+            } catch (error: Exception) {
+                Resource.Error(ErrorText.DynamicString(error.message.toString()))
             }
         }
     }

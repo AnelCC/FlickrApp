@@ -3,6 +3,7 @@ package com.example.flickrapp.presentation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,17 +45,13 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
     var showErrorDialog by remember { mutableStateOf(false) }
 
     when (uiState) {
-        is Resource.Success -> {
-            viewModel.isSearching(false)
-        }
         is Resource.Error -> {
-            viewModel.isSearching(false)
             showErrorDialog = true
         }
         is Resource.Loading -> {
-            viewModel.isSearching(true)
             showErrorDialog = false
         }
+        else -> {}
     }
 
     Column() {
@@ -76,10 +74,18 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
                     value = searchText,
                     onValueChange = { viewModel.onSearchTextChange(it) },
                     trailingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = stringResource(R.string.search)
-                        )
+                        if (searchText.isNullOrBlank()) {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = stringResource(R.string.search)
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = stringResource(R.string.close),
+                                Modifier.clickable { viewModel.resetTextChanged() }
+                            )
+                        }
                     },
                     placeholder = { Text(text = stringResource(R.string.search)) }
                 )

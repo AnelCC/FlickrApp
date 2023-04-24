@@ -16,7 +16,6 @@ import androidx.navigation.NavController
 import com.example.flickrapp.R
 import com.example.flickrapp.presentation.FlickrViewModel
 import com.example.flickrapp.presentation.home.ItemBox
-import com.example.flickrapp.presentation.utils.Loading
 import com.example.flickrapp.ui.theme.AppDimension
 import com.example.flickrapp.utils.ImageVector
 import com.example.flickrapp.utils.TopAppBarFlickr

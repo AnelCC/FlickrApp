@@ -56,7 +56,6 @@ object NetworkModule {
             .build()
     }
 
-
     @Singleton
     @Provides
     fun provideRepository(retrofit: Retrofit): ApiService {
