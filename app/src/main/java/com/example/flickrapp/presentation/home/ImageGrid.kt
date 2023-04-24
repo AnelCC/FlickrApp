@@ -1,12 +1,10 @@
 package com.example.flickrapp.presentation.home
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,11 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.flickrapp.R
 import com.example.flickrapp.data.model.Picture
 import com.example.flickrapp.ui.theme.AppDimension
 import com.example.flickrapp.ui.theme.ExtendedTheme
@@ -36,7 +32,7 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ImagesGrid(pictures: List<Picture>) {
+fun ImagesGrid(pictures: List<Picture>, onClick: (Picture) -> Unit) {
     LazyVerticalStaggeredGrid(
         modifier = Modifier
             .fillMaxSize(),
@@ -46,19 +42,22 @@ fun ImagesGrid(pictures: List<Picture>) {
         verticalItemSpacing = AppDimension.normalPadding
     ) {
         items(pictures.size) {
-            ItemBox(pictures[it])
+            ItemBox(pictures[it]) {
+                onClick.invoke(pictures[it])
+            }
         }
     }
 }
 
 @Composable
-fun ItemBox(item: Picture) {
+fun ItemBox(item: Picture, onClick: (() -> Unit)? = null) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .height(Random.nextInt(100, 300).dp)
-            .clip(RoundedCornerShape(AppDimension.normalPadding)),
-        contentAlignment = Alignment.Center
+            .clip(RoundedCornerShape(AppDimension.normalPadding))
+            .clickable { onClick?.invoke() },
+        contentAlignment = Alignment.Center,
     ) {
         AsyncImage(
             modifier = Modifier
@@ -69,7 +68,7 @@ fun ItemBox(item: Picture) {
                 .size(80.dp),
             model = "${item.url}",
             contentDescription = "${item.title}",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
         Box(
             modifier = Modifier

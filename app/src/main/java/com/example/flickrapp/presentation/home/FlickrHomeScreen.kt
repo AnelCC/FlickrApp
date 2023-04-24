@@ -1,5 +1,6 @@
 package com.example.flickrapp.presentation
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +24,10 @@ import com.example.flickrapp.R
 import com.example.flickrapp.presentation.home.ImagesGrid
 import com.example.flickrapp.presentation.utils.Loading
 import com.example.flickrapp.ui.theme.AppDimension
+import com.example.flickrapp.ui.theme.ExtendedTheme
+import com.example.flickrapp.utils.DestinationScreen
 import com.example.flickrapp.utils.TopAppBarFlickr
+import com.example.flickrapp.utils.navigateTo
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -37,9 +41,7 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            TopAppBarFlickr(title = stringResource(R.string.app_name)) {
-                navController.backQueue
-            }
+            TopAppBarFlickr(stringResource(R.string.app_name))
         }
         Row(
             modifier = Modifier
@@ -67,7 +69,10 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
                 if (isSearching) {
                     Loading()
                 } else {
-                    ImagesGrid(pictures)
+                    ImagesGrid(pictures)  {
+                        viewModel.onSelectItem(it)
+                        navigateTo(navController, DestinationScreen.DetailScreen)
+                    }
                 }
             }
         }

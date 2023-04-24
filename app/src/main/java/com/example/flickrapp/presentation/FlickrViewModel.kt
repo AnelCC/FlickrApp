@@ -22,9 +22,11 @@ class FlickrViewModel @Inject constructor(
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
 
-
     private val _isSearching = MutableStateFlow(false)
     val isSearching = _isSearching.asStateFlow()
+
+    private val _selectedPicture = MutableStateFlow<Picture?>(null)
+    val selectedPicture = _selectedPicture.asStateFlow()
 
     private val _pictures = MutableStateFlow<List<Picture>>(emptyList())
     val pictures = _pictures
@@ -36,6 +38,9 @@ class FlickrViewModel @Inject constructor(
                 _isSearching.update { false }
             }
         }
+    }
+    fun onSelectItem(picture: Picture) {
+        _selectedPicture.update { picture }
     }
     fun onSearchTextChange(text: String) {
         _isSearching.update { true }
