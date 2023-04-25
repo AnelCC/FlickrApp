@@ -1,13 +1,16 @@
 # Welcome to FlickrApp
 
-# About the project
-This is using this Api Libraries 
+### Android App
+Develop in android over MVVM, Kotlin, Android Clean Architecture, Coroutines, Retrofit, Gson, Hilt, Testing, etc.
 
-. Api **flickr.photos.search** [Doc](https://www.flickr.com/services/api/flickr.photos.search.html)
-. Api **flickr.photos.getRecent** [Doc](https://www.flickr.com/services/api/flickr.photos.getRecent.html)
+## About the project
+This is using this Flickr Api Libraries, I develop this application. Is a grid where you can select the imagen and see the detail. 
+
+* Api **flickr.photos.search** [Doc](https://www.flickr.com/services/api/flickr.photos.search.html)
+* Api **flickr.photos.getRecent** [Doc](https://www.flickr.com/services/api/flickr.photos.getRecent.html)
 
 
-# Build by branches
+## Build by branches
 
 1. Planing the architecture [Code here](https://github.com/AnelCC/FlickrApp/pull/1)
 0. Thinking in the UI [Code here](https://github.com/AnelCC/FlickrApp/pull/2)
@@ -55,6 +58,10 @@ com.anelcc.FlickrApp    # Root Package
 
 ### Preview 🎉
 
+<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIList.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIimages.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/3.UIlist.png" width="180" height="360"/>
+
+<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.Navigation.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.navigationDetail.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.error.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.loading.png" width="180" height="360"/>
+
 
 # Project Setup
 ### Android Studio Version
@@ -87,8 +94,8 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 [JDK Version Doc](https://www.oracle.com/java/technologies/javase/17-0-6-relnotes.html)
 
 ### Library References
-0. Android Clean Architecture [Read here](https://developer.android.com/topic/architecture)
-1. Android Components Navigation [Read here](https://developer.android.com/jetpack/docs/guide)
+1. Android Clean Architecture [Read here](https://developer.android.com/topic/architecture)
+0. Android Components Navigation [Read here](https://developer.android.com/jetpack/docs/guide)
 0. Kotlin [Read here](https://developer.android.com/kotlin/ktx)
 0. Android Coroutines [Here](https://developer.android.com/kotlin/coroutines).
 0. Android flow [Here](https://developer.android.com/kotlin/flow).
@@ -104,6 +111,6 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 0. View Models [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. DataModel [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. Coil Compose  [Read here](https://developer.android.com/jetpack/compose/graphics/images/loading)
-0. Test  [Read here](https://developer.android.com/studio/test/test-in-android-studio#:~:text=Click%20Run%20%3E%20Edit%20Configurations%20from,test%20type%2C%20and%20test%20class.)
+0. Testing  [Read here](https://developer.android.com/studio/test/test-in-android-studio#:~:text=Click%20Run%20%3E%20Edit%20Configurations%20from,test%20type%2C%20and%20test%20class.)
 0. Coroutines testing  [Read here](https://developer.android.com/kotlin/coroutines/test)
 0. Mocking Android dependencies  [Read here](https://developer.android.com/training/testing/local-tests#mocking-dependencies)
