@@ -55,3 +55,6 @@ Gradle JDK: JetBrains Runtime version 17.0.6/...**
 0. DataModel [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. DataModel [Read here](https://developer.android.com/topic/libraries/architecture/viewmodel)
 0. Coil Compose  [Read here](https://developer.android.com/jetpack/compose/graphics/images/loading)
+0. Test  [Read here](https://developer.android.com/studio/test/test-in-android-studio#:~:text=Click%20Run%20%3E%20Edit%20Configurations%20from,test%20type%2C%20and%20test%20class.)
+0. Coroutines testing  [Read here](https://developer.android.com/kotlin/coroutines/test)
+0. Mocking Android dependencies  [Read here](https://developer.android.com/training/testing/local-tests#mocking-dependencies)

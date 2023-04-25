@@ -23,7 +23,7 @@ class PicturesFlickrUseCase @Inject constructor(private val repository: Reposito
     private fun validateEmptyResponse(response: PicturesResponse?): Resource<PicturesResponse> {
         return response?.photos?.photo?.let {
             Resource.Success(response)
-        }?: getError(ErrorText.StringResource(R.string.empty_list_error))
+        }?:  Resource.Error(ErrorText.StringResource(R.string.empty_list_error))
     }
     private fun getError(errorCode: Any?): Resource<PicturesResponse> {
         return when (errorCode) {
@@ -31,6 +31,5 @@ class PicturesFlickrUseCase @Inject constructor(private val repository: Reposito
              500 -> Resource.Error(ErrorText.StringResource(R.string.general_error))
             else -> Resource.Error(ErrorText.StringResource(R.string.general_error))
         }
-
     }
 }
