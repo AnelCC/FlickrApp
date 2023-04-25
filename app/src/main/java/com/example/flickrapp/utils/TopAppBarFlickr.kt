@@ -1,6 +1,5 @@
 package com.example.flickrapp.utils
 
-import android.content.res.Resources.Theme
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -15,7 +14,7 @@ import com.example.flickrapp.ui.theme.AppDimension.Companion.xSmallPadding
 import com.example.flickrapp.ui.theme.ExtendedTheme
 
 @Composable
-fun TopAppBarFlickr(title: String, imageVectorType: ImageVector = ImageVector.NONE, onClickBack: () -> Unit) {
+fun TopAppBarFlickr(title: String, imageVectorType: ImageVector = ImageVector.NONE, onClickBack: (() -> Unit)? = null) {
     val imageVector = when (imageVectorType) {
         ImageVector.NONE -> null
         ImageVector.ARROW -> Icons.Filled.ArrowBack
@@ -28,7 +27,7 @@ fun TopAppBarFlickr(title: String, imageVectorType: ImageVector = ImageVector.NO
         },
         navigationIcon = {
             IconButton(onClick = {
-                onClickBack.invoke()
+                onClickBack?.invoke()
             }) {
                 imageVector?.let {
                     Icon(
