@@ -2,4 +2,8 @@
     <string name="app_name">FlickrApp</string>
     <string name="go_back">Go Back</string>
     <string name="search">Search</string>
+    <string name="close">Close</string>
+    <string name="general_error">Sorry, something went wrong</string>
+    <string name="general_key">Sorry, invalid user</string>
+    <string name="empty_list_error">Sorry, we did not find it, please try something different</string>
 </resources>

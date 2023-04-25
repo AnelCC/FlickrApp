@@ -16,7 +16,6 @@ import androidx.navigation.NavController
 import com.example.flickrapp.R
 import com.example.flickrapp.presentation.FlickrViewModel
 import com.example.flickrapp.presentation.home.ItemBox
-import com.example.flickrapp.presentation.utils.Loading
 import com.example.flickrapp.ui.theme.AppDimension
 import com.example.flickrapp.utils.ImageVector
 import com.example.flickrapp.utils.TopAppBarFlickr
@@ -25,9 +24,6 @@ import com.example.flickrapp.utils.TopAppBarFlickr
 @Composable
 fun DetailScreen(navController: NavController, viewModel: FlickrViewModel) {
     val selectedPicture by viewModel.selectedPicture.collectAsStateWithLifecycle()
-    val isSearching by viewModel.isSearching.collectAsStateWithLifecycle()
-    val pictures by viewModel.pictures.collectAsStateWithLifecycle()
-
 
     Column() {
         Row(
@@ -48,12 +44,8 @@ fun DetailScreen(navController: NavController, viewModel: FlickrViewModel) {
                     .padding(AppDimension.smallPadding)
             ) {
                 Spacer(modifier = Modifier.height(AppDimension.normalPadding))
-                if (isSearching) {
-                    Loading()
-                } else {
-                    selectedPicture?.let {
-                        ItemBox(it)
-                    }
+                selectedPicture?.let {
+                    ItemBox(it)
                 }
             }
         }

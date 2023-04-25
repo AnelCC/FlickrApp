@@ -1,16 +1,17 @@
 package com.example.flickrapp.data
 
+import com.example.flickrapp.utils.Resource
 import retrofit2.http.Query
 import javax.inject.Inject
 
 /*Local save data*/
-class Repository @Inject constructor(private val  api: ManagerService) {
+class Repository @Inject constructor(private val  managerService: ManagerService) {
 
-    suspend fun getAllPictures(): PicturesResponse? {
-        return api.getAllPictures()
+    suspend fun getAllPictures(): Resource<PicturesResponse> {
+        return managerService.getAllPictures()
     }
 
-    suspend fun getPictureSearchBy(query: String): PicturesResponse? {
-        return api.getPictureSearchBy(query)
+    suspend fun getPictureSearchBy(query: String): Resource<PicturesResponse> {
+        return managerService.getPictureSearchBy(query)
     }
 }
