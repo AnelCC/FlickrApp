@@ -1,12 +1,15 @@
 package com.example.flickrapp.presentation.home
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,8 +26,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.flickrapp.R
-import com.example.flickrapp.presentation.Picture
+import com.example.flickrapp.data.model.Picture
 import com.example.flickrapp.ui.theme.AppDimension
 import com.example.flickrapp.ui.theme.ExtendedTheme
 import kotlin.random.Random
@@ -37,9 +41,9 @@ fun ImagesGrid(pictures: List<Picture>) {
         modifier = Modifier
             .fillMaxSize(),
         columns = StaggeredGridCells.Fixed(2),
-        contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        contentPadding = PaddingValues(AppDimension.normalPadding),
+        horizontalArrangement = Arrangement.spacedBy(AppDimension.normalPadding),
+        verticalItemSpacing = AppDimension.normalPadding
     ) {
         items(pictures.size) {
             ItemBox(pictures[it])
@@ -53,33 +57,40 @@ fun ItemBox(item: Picture) {
         modifier = Modifier
             .fillMaxSize()
             .height(Random.nextInt(100, 300).dp)
-            .clip(RoundedCornerShape(AppDimension.smallPadding))
-            .background(
-                Color(
-                    Random.nextLong(0xFFFFFFFF)
-                ).copy(alpha = 1f)
-            ),
+            .clip(RoundedCornerShape(AppDimension.normalPadding)),
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            painter = painterResource(
-                id = R.drawable.ic_launcher_foreground,
-            ),
-            contentDescription = "",
+        AsyncImage(
             modifier = Modifier
+                .fillMaxSize()
                 .align(Alignment.Center)
                 .clip(RoundedCornerShape(AppDimension.normalPadding))
                 .background(ExtendedTheme.colors.primary)
                 .size(80.dp),
-            contentScale = ContentScale.Crop,
+            model = "${item.url}",
+            contentDescription = "${item.title}",
+            contentScale = ContentScale.Crop
         )
-
-        Text(
-            text = "${item.name}",
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(AppDimension.normalPadding),
-            textAlign = TextAlign.Center
-        )
+                .fillMaxWidth()
+                .height(40.dp)
+                .align(Alignment.BottomCenter)
+                .clip(RoundedCornerShape(AppDimension.normalPadding))
+                .background(
+                    Color(
+                        Random.nextLong(0xFFFFFFFF)
+                    ).copy(alpha = 1f)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "${item.title}",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(AppDimension.xSmallPadding),
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }

@@ -63,6 +63,7 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
                     placeholder = { Text(text = stringResource(R.string.search)) }
                 )
                 Spacer(modifier = Modifier.height(AppDimension.normalPadding))
+                viewModel.onLoadInitData()
                 if (isSearching) {
                     Loading()
                 } else {
