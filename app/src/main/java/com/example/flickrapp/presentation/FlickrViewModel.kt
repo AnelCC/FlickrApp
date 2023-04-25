@@ -42,7 +42,7 @@ class FlickrViewModel @Inject constructor(
         onLoadInitData()
     }
 
-    private fun onLoadInitData() {
+    fun onLoadInitData() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 when(val result = picturesRepoUserCase.invoke()) {
@@ -59,7 +59,7 @@ class FlickrViewModel @Inject constructor(
         }
     }
 
-    private suspend fun onSearchPictures(text: String) {
+    suspend fun onSearchPictures(text: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 when(val result = searchPicturesUseCase.invoke(text)) {
