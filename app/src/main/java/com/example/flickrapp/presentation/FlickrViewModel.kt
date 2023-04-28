@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -96,9 +95,9 @@ class FlickrViewModel @Inject constructor(
     }
     fun onSaveSearchText(text: String) {
         viewModelScope.launch {
-            if (text.isNotBlank()){
-                val searchText = SearchText(searchText = text)
-                insertSearchTextUseCase.invoke(searchText).flowOn(Dispatchers.IO)
+            if (text.isNotBlank() && !isTextAlreadyInserted(text)) {
+                insertSearchTextUseCase.invoke(SearchText(searchText = text))
+                    .flowOn(Dispatchers.IO)
                     .catch {
                         Log.d("onSaveSearchText", "{${it.message}}")
                     }.collect { values ->
@@ -107,16 +106,32 @@ class FlickrViewModel @Inject constructor(
             }
         }
     }
+
+    private fun isTextAlreadyInserted(text: String): Boolean {
+        return if (_searchTextList.value.isEmpty()) {
+            false
+        } else {
+            val searchText = _searchTextList.value.find {
+                it.searchText == text
+            }
+            searchText != null
+        }
+    }
+
     fun getSearchHistory() {
         viewModelScope.launch {
             searchTextHistoryListUseCase.invoke()
-//                .flowOn(Dispatchers.IO)
+                .flowOn(Dispatchers.IO)
                 .catch {
                     Log.d("getSearchHistory", "{${it.message}}")
                 }
-                .collect { values ->
-                    Log.d("here", "getSearchHistory: $values")
-                    _searchTextList.update { values }
+                .collect { searchList ->
+                    Log.d("here", "getSearchHistory: $searchList")
+                    _searchTextList.update {
+                        searchList.reversed().filter {
+                            it.searchText.contains(searchText.value)
+                        }.safeSubList(0,3)
+                    }
                 }
         }
     }
@@ -139,3 +154,6 @@ class FlickrViewModel @Inject constructor(
         onLoadInitData()
     }
 }
+
+fun <T> List<T>.safeSubList(fromIndex: Int, toIndex: Int): List<T> =
+    this.subList(fromIndex, toIndex.coerceAtMost(this.size))

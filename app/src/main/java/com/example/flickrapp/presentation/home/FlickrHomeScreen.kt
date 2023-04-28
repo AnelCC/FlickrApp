@@ -1,20 +1,18 @@
 package com.example.flickrapp.presentation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
@@ -41,7 +39,6 @@ import com.example.flickrapp.R
 import com.example.flickrapp.presentation.home.ImagesGrid
 import com.example.flickrapp.presentation.utils.Loading
 import com.example.flickrapp.ui.theme.AppDimension
-import com.example.flickrapp.ui.theme.ExtendedTheme
 import com.example.flickrapp.utils.AlertDialog
 import com.example.flickrapp.utils.DestinationScreen
 import com.example.flickrapp.utils.Resource
@@ -55,7 +52,7 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val searchList by viewModel.searchList.collectAsStateWithLifecycle()
 
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
     var isExpanded by remember { mutableStateOf(false) }
     var showErrorDialog by remember { mutableStateOf(false) }
 
@@ -86,62 +83,56 @@ fun FlickrHomeScreen(navController: NavController, viewModel: FlickrViewModel) {
                     .fillMaxSize()
                     .padding(AppDimension.smallPadding)
             ) {
-                OutlinedTextField(
-                    modifier = Modifier
-                        .focusable(true)
-                        .fillMaxWidth()
-                        .onGloballyPositioned { coordinates ->
-                            textfieldSize = (coordinates.size).toSize()
+                Box() {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusable(true)
+                            .onGloballyPositioned { coordinates ->
+                                textFieldSize = coordinates.size.toSize()
+                            }
+                            .clickable { isExpanded = !isExpanded },
+                        singleLine = true,
+                        value = searchText,
+                        onValueChange = {
+                            isExpanded = true
+                            viewModel.getSearchHistory()
+                            viewModel.onSearchTextChange(it)
                         },
-                    singleLine = true,
-                    value = searchText,
-                    onValueChange = {
-                        isExpanded = true
-                        viewModel.getSearchHistory()
-                        viewModel.onSearchTextChange(it)
-                    },
-                    trailingIcon = {
-                        if (searchText.isNullOrBlank()) {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = stringResource(R.string.search),
-                            )
-                        } else {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(R.string.close),
-                                modifier = Modifier.clickable {
-                                    viewModel.onSaveSearchText(searchText)
-                                    viewModel.resetTextChanged()
-                                }
-                            )
-                        }
-                    },
-                    placeholder = { Text(text = stringResource(R.string.search)) }
-                )
-                Spacer(modifier = Modifier.height(AppDimension.xSmallPadding))
-
-                DropdownMenu(
-                    expanded = isExpanded,
-                    onDismissRequest = { isExpanded = false },
-                    properties = PopupProperties(focusable = false),
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                        .padding(start = AppDimension.normalPadding, end = AppDimension.normalPadding)
-                        .background(ExtendedTheme.colors.primary)
-                        .width(with(LocalDensity.current){textfieldSize.width.toDp()})
-                ) {
-                    var counter = 1
-                    searchList.forEach { s ->
-                        if (counter <= 5) {
+                        trailingIcon = {
+                            if (searchText.isNullOrBlank()) {
+                                Icon(
+                                    imageVector = Icons.Default.Search,
+                                    contentDescription = stringResource(R.string.search),
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = stringResource(R.string.close),
+                                    modifier = Modifier.clickable {
+                                        viewModel.onSaveSearchText(searchText)
+                                        viewModel.resetTextChanged()
+                                    }
+                                )
+                            }
+                        },
+                        placeholder = { Text(text = stringResource(R.string.search)) }
+                    )
+                    DropdownMenu(
+                        expanded = isExpanded,
+                        onDismissRequest = { isExpanded = false },
+                        modifier = Modifier
+                            .imePadding()
+                            .width(with(LocalDensity.current){textFieldSize.width.toDp()}),
+                        properties = PopupProperties(focusable = false)
+                    ) {
+                        searchList.forEach { s ->
                             DropdownMenuItem(onClick = {
                                 viewModel.onSearchTextChange(s.searchText)
                                 isExpanded = false
                             }) {
                                 Text(text = s.searchText)
                             }
-                            counter++
                         }
                     }
                 }

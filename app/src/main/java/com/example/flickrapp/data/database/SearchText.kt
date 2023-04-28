@@ -8,6 +8,6 @@ import kotlin.random.Random
 
 @Entity(tableName = "searchText")
 data class SearchText(
-    @PrimaryKey val uid: Int? = Random.nextInt(0, 999),
+    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "search_text") val searchText: String
 )
