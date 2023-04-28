@@ -29,14 +29,20 @@ com.anelcc.FlickrApp    # Root Package
 ├── core                # Core and Data are part of the data layer contains application data and business logic. 
 
 │   │── ApiService      # For API Service,this handled the method or endpoints from network API.
-│   └── Constants      
+│   └── Constants   
+│ 
+├── database             # This section contains the database instance and the repository
+│   │── HistoryDao       # We are Save data in a local database using Room.
+│   │── His...Repository # I Defined data using Room entities
+│   └── His...Database   # This is implemented simple queries 
+│ 
 ├── data                # For API Repositories, Model classes, and  local data and to handle network responses.
 │   │── Model           # The data layer is made of repositories that each can contain zero to many data sources.
 │   │── ManagerService  # The data layer is for repository and data sources. 
-│   └── Repository             
+│   └── Repository       
 │
 ├── di                   # Dependencies injection will help to provide the information easy and faster
-│   └── NetworkModule    
+│   └── NetworkModule    # The modules for the Api network and local data are declare here to ve provided. 
 │
 ├── domain                       # The domain layer is responsible for encapsulating complex business logic, 
 │   │── BuildPictureListUseCase  # or simple business logic that is reused by multiple ViewModels. 
@@ -59,9 +65,10 @@ com.anelcc.FlickrApp    # Root Package
 
 ### Preview 🎉
 
-<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIList.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIimages.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/3.UIlist.png" width="180" height="360"/>
+<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIList.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/2.UIimages.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/3.UIlist.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.Navigation.png" width="180" height="360"/>
 
-<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.Navigation.png" width="180" height="360"/><img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.navigationDetail.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.error.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.loading.png" width="180" height="360"/>
+<img src="https://raw.githubusercontent.com/AnelCC/FlickrApp/main/images/4.navigationDetail.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.error.png" width="180" height="360"/><img src="https://github.com/AnelCC/FlickrApp/blob/main/images/5.loading.png" width="180" height="360"/><img src="https://user-images.githubusercontent.com/20619434/235048484-ab8d7bdf-9a12-47b2-8973-59c2557938d8.png" width="180" height="360"/>
+
 
 
 # Project Setup
