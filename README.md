@@ -1,7 +1,7 @@
 # Welcome to FlickrApp
 
 ### Android App
-Develop in android over MVVM, Kotlin, Android Clean Architecture, Coroutines, Retrofit, Gson, Hilt, Testing, etc.
+Develop in android over MVVM, Kotlin, Android Clean Architecture, Coroutines, Retrofit, Gson, Hilt, Room Database, Testing, etc.
 
 ## About the project
 This is using this Flickr Api Libraries, I develop this application. Is a grid where you can select the imagen and see the detail. 
